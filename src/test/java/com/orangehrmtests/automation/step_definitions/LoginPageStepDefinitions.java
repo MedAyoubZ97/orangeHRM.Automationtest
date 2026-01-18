@@ -1,6 +1,7 @@
-package com.orangehrmloginpagetests.automation.step_definitions;
+package com.orangehrmtests.automation.step_definitions;
 
-import com.orangehrmloginpagetests.automation.page_objects.LoginPage;
+import com.orangehrmtests.automation.page_objects.LoginPage;
+import com.orangehrmtests.automation.utils.UserActions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,29 +9,33 @@ import io.cucumber.java.en.When;
 
 public class LoginPageStepDefinitions {
 	private LoginPage loginPage = new LoginPage();
-	
+	private UserActions userActions = new UserActions();
 
 	@Given("Acceder a la page de login")
 	public void accederALaPageDeLogin() {
 		loginPage.goToUrl();
 	}
+
 	@When("Remplir le champ username {string}")
-	public void remplirLeChampUsername(String username){
-		loginPage.fillUsername(username);
+	public void remplirLeChampUsername(String username) {
+		userActions.fillInput(LoginPage.usernameField, username);
 
 	}
+
 	@When("Remplir le champ password {string}")
-	public void remplirLeChampPassword(String password){
-		loginPage.fillPassword(password);
+	public void remplirLeChampPassword(String password) {
+		userActions.fillInput(LoginPage.passwordField, password);
 
 	}
+
 	@When("Cliquer sur le boutton login")
-	public void cliquerSurLeBouttonLogin(){
-		loginPage.clicLoginBtn();
+	public void cliquerSurLeBouttonLogin() {
+		userActions.btnClick(LoginPage.loginBtn);
 	}
+
 	@Then("verifier le message d erreur s affiche")
-	public void verifierLeMessageDErreurSAffiche()  {
-		loginPage.verifyErrMsg();
+	public void verifierLeMessageDErreurSAffiche() {
+		userActions.textVerification(LoginPage.errorMsgLogin, "Invalid credentials");
 
 	}
 
@@ -40,20 +45,16 @@ public class LoginPageStepDefinitions {
 		loginPage.verifChampCssValue(LoginPage.passwordField);
 	}
 
-
-
 	@Then("verifier le champ password vide affiche un erreur")
 	public void verifierLeChampPasswordVideAfficheUnErreur() {
 		loginPage.verifChampCssValue(LoginPage.passwordField);
 
 	}
 
-
 	@Then("verifier le champ username vide affiche un erreur")
 	public void verifierLeChampUsernameVideAfficheUnErreur() {
 		loginPage.verifChampCssValue(LoginPage.usernameField);
 	}
-
 
 	@Then("Redirection vers la page d acceuil")
 	public void redirectionVersLaPageDAcceuil() {
@@ -61,26 +62,27 @@ public class LoginPageStepDefinitions {
 
 	}
 
-
 	@Then("Cliquer sur le lien hypertext Forgot Password")
 	public void cliquerSurLeLienHypertextForgotPassword() {
-		loginPage.clickHyperlink();
+		userActions.btnClick(LoginPage.forgotPasswordLink);
 
 	}
+
 	@Then("Remplir le champ username avec username {string}")
 	public void remplirLeChampUsernameAvecUsername(String username) {
-		loginPage.fillResetUsername(username);
+		userActions.fillInput(LoginPage.resetUsernameField, username);
 	}
+
 	@Then("Cliquer sur le boutton reset password")
 	public void cliquerSurLeBouttonResetPassword() {
-		loginPage.resetPasswordClick();
+		userActions.btnClick(LoginPage.resetPassBtn);
 
 	}
+
 	@Then("Un pop up s affiche {string}")
-	public void unPopUpSAffiche(String string) {
-		loginPage.verifyReset(string);
+	public void unPopUpSAffiche(String text) {
+		userActions.textVerification(LoginPage.requiredText, text);
 
 	}
-	
 
 }

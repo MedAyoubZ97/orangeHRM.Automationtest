@@ -1,4 +1,4 @@
-package com.orangehrmloginpagetests.automation.page_objects;
+package com.orangehrmtests.automation.page_objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -9,11 +9,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.orangehrmloginpagetests.automation.utils.ConfigFileReader;
-import com.orangehrmloginpagetests.automation.utils.Setup;
+import com.orangehrmtests.automation.utils.ConfigFileReader;
+import com.orangehrmtests.automation.utils.Setup;
 
 public class LoginPage {
 	private ConfigFileReader configFileReader;
@@ -42,8 +41,8 @@ public class LoginPage {
 
 	@FindBy(how = How.XPATH, using = "//h6[normalize-space()='Reset Password link sent successfully']")
 	public static WebElement resetText;
-	
-	@FindBy(how=How.XPATH, using="//span[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']")
+
+	@FindBy(how = How.XPATH, using = "//span[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']")
 	public static WebElement requiredText;
 
 	public LoginPage() {
@@ -56,27 +55,6 @@ public class LoginPage {
 		Setup.getDriver().get(configFileReader.getProperties("orangehrm.url"));
 	}
 
-	public void fillUsername(String username) {
-		wait.until(ExpectedConditions.visibilityOf(usernameField));
-		usernameField.clear();
-		usernameField.sendKeys(username);
-	}
-
-	public void fillPassword(String password) {
-		passwordField.clear();
-		passwordField.sendKeys(password);
-	}
-
-	public void clicLoginBtn() {
-
-		loginBtn.click();
-	}
-
-	public void verifyErrMsg() {
-		wait.until(ExpectedConditions.visibilityOf(errorMsgLogin));
-		assertEquals(errorMsgLogin.getText(), "Invalid credentials");
-	}
-
 	public void verifChampCssValue(WebElement element) {
 		String champColor = Color.fromString(element.getCssValue("border-color")).asHex();
 		assertEquals(champColor, "#eb0910");
@@ -87,27 +65,4 @@ public class LoginPage {
 		assertEquals(url, "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
 	}
 
-	public void clickHyperlink() {
-		wait.until(ExpectedConditions.visibilityOf(forgotPasswordLink));
-		forgotPasswordLink.click();
-	}
-
-	public void fillResetUsername(String username) {
-		wait.until(ExpectedConditions.visibilityOf(resetUsernameField));
-		resetUsernameField.clear();
-		resetUsernameField.sendKeys(username);
-	}
-
-	public void resetPasswordClick() {
-		resetPassBtn.click();
-		
-	}
-
-	public void verifyReset(String verifyTxt) {
-
-				wait.until(ExpectedConditions.visibilityOf(resetText));
-				assertEquals(resetText.getText(), verifyTxt);
-
-		
-	}
 }

@@ -1,4 +1,4 @@
-package com.orangehrmloginpagetests.automation.utils;
+package com.orangehrmtests.automation.utils;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

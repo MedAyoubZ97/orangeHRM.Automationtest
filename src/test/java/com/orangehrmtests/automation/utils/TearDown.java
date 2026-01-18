@@ -1,4 +1,4 @@
-package com.orangehrmloginpagetests.automation.utils;
+package com.orangehrmtests.automation.utils;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;

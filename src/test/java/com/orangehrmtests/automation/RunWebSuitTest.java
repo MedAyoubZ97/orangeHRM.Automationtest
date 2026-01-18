@@ -1,4 +1,4 @@
-package com.orangehrmloginpagetests.automation;
+package com.orangehrmtests.automation;
 
 import org.junit.runner.RunWith;
 import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
