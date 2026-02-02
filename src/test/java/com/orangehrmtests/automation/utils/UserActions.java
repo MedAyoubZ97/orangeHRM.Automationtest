@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UserActions {
-	public WebDriverWait wait = new WebDriverWait(Setup.getDriver(), Duration.ofSeconds(20));
+	public WebDriverWait wait = new WebDriverWait(Setup.getDriver(), Duration.ofSeconds(10));
 
 	public void btnClick(WebElement btnElement) {
 		wait.until(ExpectedConditions.visibilityOf(btnElement));

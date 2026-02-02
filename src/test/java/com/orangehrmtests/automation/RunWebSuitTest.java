@@ -9,7 +9,8 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
 		features = {"src/spec/features"},
 		plugin = {"pretty","html:target/cucumber-report.html"},
-		tags = ("@login"),
+		tags = ("@PimPage"),
+		//tags = ("@AjouterUnEmployeeValideAvecLoginDetails"),
 		monochrome = true,
 		snippets = CAMELCASE
 		)

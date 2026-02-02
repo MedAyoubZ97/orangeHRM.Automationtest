@@ -8,7 +8,7 @@ import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.orangehrmtests.automation.utils.ConfigFileReader;
@@ -44,7 +44,11 @@ public class LoginPage {
 
 	@FindBy(how = How.XPATH, using = "//span[@class='oxd-text oxd-text--span oxd-input-field-error-message oxd-input-group__message']")
 	public static WebElement requiredText;
-
+	
+	@FindBy(how = How.XPATH, using = "//h6[normalize-space()='Dashboard']")
+	public static WebElement dashboardTitle;
+	
+	
 	public LoginPage() {
 		PageFactory.initElements(Setup.getDriver(), this);
 		this.configFileReader = new ConfigFileReader();
@@ -61,6 +65,7 @@ public class LoginPage {
 	}
 
 	public void verifyRedirection() {
+		wait.until(ExpectedConditions.visibilityOf(dashboardTitle));
 		String url = Setup.getDriver().getCurrentUrl();
 		assertEquals(url, "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
 	}
